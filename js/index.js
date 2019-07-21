@@ -84,7 +84,22 @@ function fetchRepos(reposUrl) {
 }
 
 function handleRepos(repoListData) {
-  console.log(repoListData);
+  // Find the container to attach the repos to
+  let reposList = document.querySelector('#repos-list');
+  // loop through our data
+  repoListData.forEach(repoObject => {
+    // create an li
+    let repo = document.createElement('li');
+    // append to the UL, reposList
+    reposList.append(repo);
+    // debugger;
+    repo.classList.add('repo-list-item');
+    repo.innerHTML = `
+    <a href=${repoObject.html_url} target="_blank">
+      <p>${repoObject.full_name}</p>
+    </a>
+    `;
+  });
 }
 
 /* RESULTS - AN ARRAY OF OBJECTS, THIS IS THE FIRST ONE:
@@ -112,7 +127,7 @@ fork: true
 forks: 0
 forks_count: 0
 forks_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/forks"
-full_name: "Lexscher/activerecord-validations-lab-dumbo-web-060319"
+**full_name: "Lexscher/activerecord-validations-lab-dumbo-web-060319"
 git_commits_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/git/commits{/sha}"
 git_refs_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/git/refs{/sha}"
 git_tags_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/git/tags{/sha}"
@@ -124,7 +139,7 @@ has_projects: true
 has_wiki: false
 homepage: null
 hooks_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/hooks"
-html_url: "https://github.com/Lexscher/activerecord-validations-lab-dumbo-web-060319"
+**html_url: "https://github.com/Lexscher/activerecord-validations-lab-dumbo-web-060319"
 id: 194569516
 issue_comment_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/issues/comments{/number}"
 issue_events_url: "https://api.github.com/repos/Lexscher/activerecord-validations-lab-dumbo-web-060319/issues/events{/number}"
