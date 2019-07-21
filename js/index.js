@@ -83,7 +83,6 @@ function handleGitHubUser(users, searchedName) {
     <img src=${user.avatar_url} alt=${user.login} class="user-avatar">
       <p class="load-repo-button">${user.login}</p> 
     `;
-    console.log(user);
     // add event listeners
     userItem.addEventListener('click', event => {
       // get user's repo url link
@@ -102,7 +101,6 @@ function handleUserClickEvent(foundUser) {
 }
 
 function fetchRepos(reposUrl) {
-  console.log(reposUrl);
   // fetch url
   fetch(reposUrl, {
     method: 'GET',
@@ -121,6 +119,8 @@ function fetchRepos(reposUrl) {
 function handleRepos(repoListData) {
   // Find the container to attach the repos to
   let reposList = document.querySelector('#repos-list');
+  // Prevent list from including previous click's repos
+  reposList.innerHTML = '';
   // loop through our data
   repoListData.forEach(repoObject => {
     // create an li
