@@ -38,11 +38,13 @@ ul {
   display: flex;
   padding: 0.5rem 0.2rem;
   border-radius: 0.3rem;
+  margin-bottom: 0.5rem;
   transition: 0.3s;
 }
 
-.user-list-item a {
+.user-list-item p {
   color: rgb(144, 181, 236);
+  cursor: pointer;
 }
 
 .user-list-item:hover {

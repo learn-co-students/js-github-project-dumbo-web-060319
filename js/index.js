@@ -60,11 +60,16 @@ function handleGitHubUser(users, searchedName) {
   let usersArr = users.items;
   // find the one we're looking for
   // FIND EXACT USER YOU SEARCH FOR -- this is NOT what they asked haha
-  let foundUser = usersArr.find(
-    user => user.login.toLowerCase() === searchedName.toLowerCase()
+  // let foundUser = usersArr.find(
+  //   user => user.login.toLowerCase() === searchedName.toLowerCase()
+  // );
+  // Instead, we'll look for all the repos that INCLUDE the substring
+  let foundUsers = usersArr.filter(user =>
+    user.login.toLowerCase().includes(searchedName.toLowerCase())
   );
+
   // loop through array
-  usersArr.forEach(user => {
+  foundUsers.forEach(user => {
     // create li
     let userItem = document.createElement('li');
     // append userItem to userList
@@ -76,16 +81,24 @@ function handleGitHubUser(users, searchedName) {
     // add inner html that will hold the username, avatar, and profile link
     userItem.innerHTML = `
     <img src=${user.avatar_url} alt=${user.login} class="user-avatar">
-    <a href=${user.html_url} target="_blank">
-      <p>${user.login}</p>
-    </a>
+      <p class="load-repo-button">${user.login}</p> 
     `;
     console.log(user);
+    // add event listeners
+    userItem.addEventListener('click', event => {
+      // get user's repo url link
+      let userReposUrl = user.repos_url;
+      // call our fetch repos method
+      fetchRepos(userReposUrl);
+    });
   });
-  // get user repos endpoint
-  let userReposUrl = foundUser.repos_url;
-  // call our fetch repos method
-  fetchRepos(userReposUrl);
+}
+
+function handleUserClickEvent(foundUser) {
+  // get the load repo button
+  let loadRepoButton = document.querySelectorAll('.load-repo-button');
+  // add event listeners
+  loadRepoButton.addEventListener('click', event => console.log(event));
 }
 
 function fetchRepos(reposUrl) {
