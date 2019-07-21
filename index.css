@@ -1,5 +1,9 @@
 body {
-  background-color: rgb(131, 133, 136);
+  background-color: rgb(144, 181, 236);
+}
+
+a {
+  text-decoration: none;
 }
 
 #main {
@@ -27,4 +31,36 @@ ul {
   padding: 0.3rem 0.3rem;
   border-radius: 0.2rem;
   border: 0.06rem solid salmon;
+}
+
+.user-list-item {
+  background-color: #000;
+  display: flex;
+  padding: 0.5rem 0.2rem;
+  border-radius: 0.3rem;
+  transition: 0.3s;
+}
+
+.user-list-item a {
+  color: rgb(144, 181, 236);
+}
+
+.user-list-item:hover {
+  padding: 0.6rem 0.3rem;
+  box-shadow: 0.1rem 0.2rem salmon;
+}
+
+.user-avatar {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  margin-right: 0.2rem;
+}
+
+.repo-list-item a {
+  color: black;
+}
+
+.repo-list-item:hover {
+  text-decoration: overline underline;
 }

@@ -54,12 +54,34 @@ function handleGitHubUser(users, searchedName) {
   if (invalidResponse) {
     return 'INVALID SEARCH';
   }
+  // Get the ul from the page
+  let userList = document.querySelector('#user-list');
   // get the array of users
   let usersArr = users.items;
   // find the one we're looking for
+  // FIND EXACT USER YOU SEARCH FOR -- this is NOT what they asked haha
   let foundUser = usersArr.find(
     user => user.login.toLowerCase() === searchedName.toLowerCase()
   );
+  // loop through array
+  usersArr.forEach(user => {
+    // create li
+    let userItem = document.createElement('li');
+    // append userItem to userList
+    userList.append(userItem);
+    // Add a unique id to the li
+    userItem.id = `user-${user.id}`;
+    // add a class
+    userItem.classList.add('user-list-item');
+    // add inner html that will hold the username, avatar, and profile link
+    userItem.innerHTML = `
+    <img src=${user.avatar_url} alt=${user.login} class="user-avatar">
+    <a href=${user.html_url} target="_blank">
+      <p>${user.login}</p>
+    </a>
+    `;
+    console.log(user);
+  });
   // get user repos endpoint
   let userReposUrl = foundUser.repos_url;
   // call our fetch repos method
